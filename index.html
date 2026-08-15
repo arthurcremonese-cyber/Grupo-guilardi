@@ -118,8 +118,7 @@
   @media(min-width:1024px){ .hero{padding:88px 0 64px;} }
   .hero-blob-a{position:absolute;width:520px;height:520px;border-radius:9999px;background:radial-gradient(circle,var(--primary),transparent 70%);opacity:0.16;filter:blur(60px);top:-180px;right:-160px;z-index:0;}
   .hero-blob-b{position:absolute;width:420px;height:420px;border-radius:9999px;background:radial-gradient(circle,var(--navy),transparent 70%);opacity:0.12;filter:blur(60px);bottom:-160px;left:-140px;z-index:0;}
-  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:48px;align-items:center;}
-  @media(min-width:1024px){ .hero-grid{grid-template-columns:1.05fr 0.95fr;gap:56px;} }
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:48px;align-items:center;max-width:44rem;}
   .hero h1{font-size:2rem;margin-bottom:20px;}
   @media(min-width:640px){ .hero h1{font-size:2.75rem;} }
   @media(min-width:1024px){ .hero h1{font-size:3.25rem;} }
@@ -220,6 +219,7 @@
   .card h3{font-size:1.125rem;margin-bottom:8px;}
   .card p{font-size:0.9375rem;}
   .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .tag-row-2col{display:grid;grid-template-columns:repeat(2,max-content);gap:8px;margin-top:14px;}
   .tag{background:var(--alt-bg);color:var(--navy);font-size:0.75rem;font-weight:600;padding:5px 10px;border-radius:8px;}
 
   /* ---------- Portfolio ---------- */
@@ -394,23 +394,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-card">
-          <!-- SUBSTITUIR: adicionar foto real de obra (arquivo foto-obra-guilardi.jpg nesta mesma pasta) -->
-          <img src="foto-obra-guilardi.jpg" alt="Obra do Grupo Guilardi em andamento" class="hero-photo" onerror="this.style.display='none'">
-          <div class="hero-photo-scrim"></div>
-          <div class="hero-card-row">
-            <div class="hero-card-badge"><i data-lucide="hard-hat" style="width:16px;height:16px;"></i> Obra em andamento</div>
-          </div>
-        </div>
-        <div class="hero-float">
-          <i data-lucide="badge-check" style="width:22px;height:22px;color:var(--primary);"></i>
-          <div>
-            <b>Visita técnica em até 3 dias</b>
-            <span>Agilidade no atendimento</span>
-          </div>
-        </div>
-      </div>
+      <!-- SUBSTITUIR: quando tivermos foto real de obra, adicionar aqui um bloco .hero-visual com a imagem -->
     </div>
   </section>
 
@@ -473,7 +457,7 @@
           <div class="icon-badge"><i data-lucide="hammer"></i></div>
           <h3>Reformas</h3>
           <p>Reformas residenciais, comerciais e corporativas executadas com planejamento e organização em todas as etapas.</p>
-          <div class="tag-row">
+          <div class="tag-row-2col">
             <span class="tag">Residenciais</span><span class="tag">Comerciais</span><span class="tag">Ampliações</span><span class="tag">Revitalizações</span>
           </div>
         </div>
@@ -749,10 +733,8 @@
         <h4>Contato</h4>
         <ul>
           <li><i data-lucide="map-pin"></i> Atendimento: Rio Grande do Sul</li>
-          <li><i data-lucide="phone"></i> Telefone: [XX]</li>
-          <li><i data-lucide="message-circle"></i> WhatsApp: [XX]</li>
-          <li><i data-lucide="mail"></i> E-mail: [XX]</li>
-          <li><i data-lucide="file-text"></i> CNPJ: [XX]</li>
+          <li><i data-lucide="mail"></i> guilardiengenharia@gmail.com</li>
+          <li><i data-lucide="file-text"></i> CNPJ: 64.988.955/0001-81</li>
         </ul>
       </div>
       <div>
