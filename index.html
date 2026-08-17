@@ -103,7 +103,11 @@
   }
   nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1280px;margin:0 auto;}
   .logo{display:flex;align-items:center;gap:10px;line-height:1.05;}
-  .logo-badge{display:flex;align-items:center;justify-content:center;flex-shrink:0;height:50px;}
+  .logo-badge{
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    height:50px;padding:8px 14px;border-radius:10px;
+    background:rgba(255,255,255,0.92);
+  }
   .logo-img{height:100%;width:auto;object-fit:contain;}
   .logo-mark{font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.01em;}
   .logo-sub{font-size:0.6875rem;color:var(--body);font-weight:500;letter-spacing:0.02em;}
@@ -342,7 +346,8 @@
   @media(min-width:768px){ .footer-grid{grid-template-columns:1.4fr 1fr 1fr;} }
   footer h4{color:#fff;font-size:0.9375rem;margin-bottom:14px;}
   footer .logo-mark{color:#fff;}
-  .footer-logo{height:64px;width:auto;}
+  .footer-logo-badge{display:inline-flex;align-items:center;padding:12px 18px;border-radius:12px;background:rgba(255,255,255,0.92);}
+  .footer-logo{height:52px;width:auto;display:block;}
   footer p, footer li{font-size:0.875rem;color:rgba(255,255,255,0.65);margin-bottom:8px;}
   footer li{display:flex;align-items:center;gap:8px;}
   footer li svg{width:16px;height:16px;color:var(--primary);flex-shrink:0;}
@@ -734,7 +739,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="logo-guilardi.png" alt="Grupo Guilardi" class="footer-logo">
+        <span class="footer-logo-badge"><img src="logo-guilardi.png" alt="Grupo Guilardi" class="footer-logo"></span>
         <p style="margin-top:12px;">Reformas · Demolições · Engenharia</p>
       </div>
       <div>
