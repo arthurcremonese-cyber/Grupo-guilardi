@@ -102,7 +102,12 @@
   }
   nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1280px;margin:0 auto;}
   .logo{display:flex;align-items:center;gap:10px;line-height:1.05;}
-  .logo-img{height:48px;width:48px;border-radius:10px;object-fit:cover;flex-shrink:0;}
+  .logo-badge{
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    height:50px;padding:8px 16px;border-radius:10px;
+    background:linear-gradient(135deg, var(--primary), var(--navy));
+  }
+  .logo-img{height:100%;width:auto;object-fit:contain;}
   .logo-mark{font-size:1.125rem;font-weight:800;color:var(--navy);letter-spacing:-0.01em;}
   .logo-sub{font-size:0.6875rem;color:var(--body);font-weight:500;letter-spacing:0.02em;}
   .nav-right{display:flex;align-items:center;gap:16px;}
@@ -119,7 +124,10 @@
   @media(min-width:1024px){ .hero{padding:88px 0 64px;} }
   .hero-blob-a{position:absolute;width:520px;height:520px;border-radius:9999px;background:radial-gradient(circle,var(--primary),transparent 70%);opacity:0.16;filter:blur(60px);top:-180px;right:-160px;z-index:0;}
   .hero-blob-b{position:absolute;width:420px;height:420px;border-radius:9999px;background:radial-gradient(circle,var(--navy),transparent 70%);opacity:0.12;filter:blur(60px);bottom:-160px;left:-140px;z-index:0;}
-  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:48px;align-items:center;max-width:44rem;}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:48px;align-items:center;max-width:46rem;margin:0 auto;text-align:center;}
+  .hero-grid .hero-actions{justify-content:center;}
+  .hero-grid .hero-stats{justify-content:center;}
+  @media(min-width:768px){ .hero h1{margin-left:auto;margin-right:auto;} .hero-sub{margin-left:auto;margin-right:auto;} }
   .hero h1{font-size:2rem;margin-bottom:20px;}
   @media(min-width:640px){ .hero h1{font-size:2.75rem;} }
   @media(min-width:1024px){ .hero h1{font-size:3.25rem;} }
@@ -195,11 +203,13 @@
   @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   .logo-chip{
     background:#fff;border:1px solid var(--border);border-radius:12px;
-    padding:16px 28px;box-shadow:var(--shadow-soft);flex-shrink:0;
+    padding:18px 20px;box-shadow:var(--shadow-soft);flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
-    height:76px;width:150px;
+    height:140px;width:220px;
+    transition:transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
   }
-  .logo-chip img{max-height:38px;max-width:110px;width:auto;height:auto;object-fit:contain;}
+  .logo-chip:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--primary);}
+  .logo-chip img{max-height:104px;max-width:180px;width:auto;height:auto;object-fit:contain;}
 
   /* ---------- Cards grid ---------- */
   .grid{display:grid;grid-template-columns:1fr;gap:20px;}
@@ -280,7 +290,8 @@
   .sos-panel svg{width:20px;height:20px;color:#FCA5A5;flex-shrink:0;}
 
   /* ---------- Testimonials ---------- */
-  .testi-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow-soft);}
+  .testi-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow-soft);transition:transform 200ms var(--ease), box-shadow 200ms var(--ease);}
+  .testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
   .stars{display:flex;gap:3px;color:#F59E0B;margin-bottom:14px;}
   .stars svg{width:16px;height:16px;fill:#F59E0B;}
   .testi-card p{font-style:italic;color:var(--navy);font-size:0.9375rem;margin-bottom:16px;}
@@ -334,7 +345,7 @@
   @media(min-width:768px){ .footer-grid{grid-template-columns:1.4fr 1fr 1fr;} }
   footer h4{color:#fff;font-size:0.9375rem;margin-bottom:14px;}
   footer .logo-mark{color:#fff;}
-  .footer-logo{height:96px;width:auto;border-radius:12px;}
+  .footer-logo{height:64px;width:auto;}
   footer p, footer li{font-size:0.875rem;color:rgba(255,255,255,0.65);margin-bottom:8px;}
   footer li{display:flex;align-items:center;gap:8px;}
   footer li svg{width:16px;height:16px;color:var(--primary);flex-shrink:0;}
@@ -361,11 +372,10 @@
 <header>
   <nav>
     <a href="#top" class="logo">
-      <img src="logo-guilardi.png" alt="Grupo Guilardi" class="logo-img">
+      <span class="logo-badge"><img src="logo-guilardi.png" alt="Grupo Guilardi" class="logo-img"></span>
     </a>
     <div class="nav-right">
       <a href="#sos" class="sos-pill"><i data-lucide="siren" style="width:14px;height:14px;"></i> SOS GUILARDI</a>
-      <a href="#orcamento" class="btn btn-primary">Solicitar orçamento <i data-lucide="arrow-right" class="arrow"></i></a>
     </div>
   </nav>
 </header>
