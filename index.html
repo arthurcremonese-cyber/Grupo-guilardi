@@ -790,6 +790,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   var WHATSAPP_NUMBER = "5551991042027";
 
+  /* Captura invisível de UTM: lê da URL ao carregar e guarda no navegador
+     (localStorage) pra não perder o dado se a pessoa navegar pela página
+     antes de preencher o formulário. Sempre que a URL trouxer utm novo,
+     ele substitui o guardado (last-touch). */
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+  function captureUTMs(){
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var found = false;
+      UTM_KEYS.forEach(function(key){
+        var val = params.get(key);
+        if (val) { localStorage.setItem('gg_' + key, val); found = true; }
+      });
+      return found;
+    } catch (e) { return false; }
+  }
+  function getStoredUTMs(){
+    var out = {};
+    UTM_KEYS.forEach(function(key){
+      try { out[key] = localStorage.getItem('gg_' + key) || ''; } catch (e) { out[key] = ''; }
+    });
+    return out;
+  }
+  captureUTMs();
+
   document.addEventListener('DOMContentLoaded', function(){
     if (window.lucide) lucide.createIcons();
     var sosMsg = encodeURIComponent('Olá, vi o site de vocês e preciso de um orçamento emergencial.');
@@ -830,11 +855,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       if (MAKE_WEBHOOK_URL) {
         try {
+          var utms = getStoredUTMs();
           var payload = JSON.stringify({
             nome: nome,
             whatsapp: whatsapp,
             cidade: cidade,
             servico: servico,
+            utm_source: utms.utm_source,
+            utm_medium: utms.utm_medium,
+            utm_campaign: utms.utm_campaign,
+            utm_term: utms.utm_term,
+            utm_content: utms.utm_content,
+            gclid: utms.gclid,
+            fbclid: utms.fbclid,
+            pagina: window.location.href,
             origem: 'site-grupoguilardi',
             data: new Date().toISOString()
           });
