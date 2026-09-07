@@ -882,7 +882,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (servico) texto += ' Preciso de um orçamento para ' + servico.toLowerCase() + '.';
       if (cidade) texto += ' Sou de ' + cidade + '.';
       texto += ' Vim pelo site do Grupo Guilardi.';
-      window.location.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+      var wppUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+      /* pequeno atraso pra garantir que o lead saia antes da página trocar de endereço
+         (alguns navegadores/webviews de app cortam a conexão do sendBeacon se a navegação
+         acontecer no mesmo instante) */
+      setTimeout(function(){ window.location.href = wppUrl; }, 250);
     });
   })();
 
