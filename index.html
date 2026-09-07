@@ -814,15 +814,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   })();
 
-  /* Envio do formulário: redireciona direto para o WhatsApp com os dados preenchidos */
+  /* SUBSTITUIR: URL do webhook do Make (Webhooks > Custom webhook). Deixe "" para não enviar. */
+  var MAKE_WEBHOOK_URL = "";
+
+  /* Envio do formulário: manda o lead pro webhook do Make (planilha) e redireciona para o WhatsApp */
   (function(){
     var form = document.getElementById('form-orcamento');
     if (!form) return;
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var nome = document.getElementById('nome').value.trim();
+      var whatsapp = document.getElementById('whatsapp').value.trim();
       var cidade = document.getElementById('cidade').value.trim();
       var servico = document.getElementById('servico').value;
+
+      if (MAKE_WEBHOOK_URL) {
+        try {
+          var payload = JSON.stringify({
+            nome: nome,
+            whatsapp: whatsapp,
+            cidade: cidade,
+            servico: servico,
+            origem: 'site-grupoguilardi',
+            data: new Date().toISOString()
+          });
+          navigator.sendBeacon(MAKE_WEBHOOK_URL, new Blob([payload], { type: 'application/json' }));
+        } catch (err) { /* nunca deixa o envio do lead travar o redirecionamento */ }
+      }
+
       var texto = 'Olá! Meu nome é ' + nome + '.';
       if (servico) texto += ' Preciso de um orçamento para ' + servico.toLowerCase() + '.';
       if (cidade) texto += ' Sou de ' + cidade + '.';
