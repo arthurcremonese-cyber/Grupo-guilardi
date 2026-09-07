@@ -856,7 +856,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (MAKE_WEBHOOK_URL) {
         try {
           var utms = getStoredUTMs();
-          var payload = JSON.stringify({
+          /* application/x-www-form-urlencoded: não dispara preflight de CORS (assim como
+             text/plain) E o Make separa automaticamente em campos nomeados, igual um
+             formulário HTML comum — mais confiável pra mapear na planilha do que texto cru. */
+          var formData = new URLSearchParams({
             nome: nome,
             whatsapp: whatsapp,
             cidade: cidade,
@@ -872,9 +875,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             origem: 'site-grupoguilardi',
             data: new Date().toISOString()
           });
-          /* text/plain evita o preflight de CORS (application/json força uma verificação
-             prévia que o Make não responde de forma compatível com sendBeacon) */
-          navigator.sendBeacon(MAKE_WEBHOOK_URL, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
+          navigator.sendBeacon(MAKE_WEBHOOK_URL, new Blob([formData.toString()], { type: 'application/x-www-form-urlencoded' }));
         } catch (err) { /* nunca deixa o envio do lead travar o redirecionamento */ }
       }
 
