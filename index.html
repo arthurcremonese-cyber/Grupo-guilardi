@@ -872,7 +872,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             origem: 'site-grupoguilardi',
             data: new Date().toISOString()
           });
-          navigator.sendBeacon(MAKE_WEBHOOK_URL, new Blob([payload], { type: 'application/json' }));
+          /* text/plain evita o preflight de CORS (application/json força uma verificação
+             prévia que o Make não responde de forma compatível com sendBeacon) */
+          navigator.sendBeacon(MAKE_WEBHOOK_URL, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
         } catch (err) { /* nunca deixa o envio do lead travar o redirecionamento */ }
       }
 
